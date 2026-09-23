@@ -1,0 +1,208 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f7fb;
+  color: #222;
+}
+
+/* Main container */
+.attendance-container {
+  width: 95%;
+  max-width: 1500px;
+  margin: 30px auto;
+}
+
+h1 {
+  text-align: center;
+  font-size: 38px;
+  margin-bottom: 35px;
+  color: #222;
+}
+
+/* =========================
+   SUMMARY CARDS
+========================= */
+
+.summary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-bottom: 45px;
+}
+
+.summary div {
+  background: white;
+  padding: 30px;
+  text-align: center;
+  border-radius: 15px;
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.08);
+}
+
+.summary h3 {
+  margin: 0 0 15px;
+  font-size: 26px;
+  color: #475569;
+}
+
+.summary p {
+  margin: 0;
+  font-size: 40px;
+  font-weight: bold;
+  color: #475569;
+}
+
+.present-count {
+  color: #16a34a !important;
+}
+
+.absent-count {
+  color: #dc2626 !important;
+}
+
+/* =========================
+   STUDENT LIST
+========================= */
+
+.student-list {
+  background: white;
+  padding: 15px 35px;
+  border-radius: 15px;
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.08);
+}
+
+/* Student row */
+
+.student {
+  display: grid;
+
+  /* IMPORTANT:
+     This keeps the name close to the left
+     instead of creating a huge empty space.
+  */
+  grid-template-columns: 2fr 1fr 0.7fr;
+
+  align-items: center;
+  gap: 30px;
+
+  padding: 22px 5px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.student:last-child {
+  border-bottom: none;
+}
+
+/* Student name */
+
+.student-name {
+  font-size: 22px;
+  font-weight: bold;
+  color: #334155;
+  text-align: left;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+button {
+  border: none;
+  padding: 12px 25px;
+  border-radius: 7px;
+
+  font-size: 17px;
+  font-weight: bold;
+
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+/* Present button */
+
+.present-btn {
+  background: #22c55e;
+  color: white;
+}
+
+.present-btn:hover {
+  background: #16a34a;
+  transform: translateY(-2px);
+}
+
+/* Absent button */
+
+.absent-btn {
+  background: #ef3340;
+  color: white;
+}
+
+.absent-btn:hover {
+  background: #dc2626;
+  transform: translateY(-2px);
+}
+
+/* =========================
+   STATUS
+========================= */
+
+.status {
+  text-align: center;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.status.present {
+  color: #008000;
+}
+
+.status.absent {
+  color: #e00000;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 800px) {
+
+  .attendance-container {
+    width: 95%;
+  }
+
+  h1 {
+    font-size: 30px;
+  }
+
+  .summary {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .student {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 15px;
+  }
+
+  .student-name {
+    text-align: center;
+  }
+
+  .buttons {
+    justify-content: center;
+  }
+
+  .status {
+    text-align: center;
+  }
+}
