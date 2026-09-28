@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 
 import "./App.css";
 
@@ -15,7 +15,7 @@ import ImportantDays from "./pages/ImportantDays";
 function App() {
   return (
     <TaskProvider>
-      <BrowserRouter basename={import.meta.env.BASE_URL}>
+      <HashRouter>
         <Navbar />
 
         <Routes>
@@ -25,7 +25,7 @@ function App() {
           <Route path="/weekly" element={<Weekly />} />
           <Route path="/important-days" element={<ImportantDays />} />
         </Routes>
-      </BrowserRouter>
+      </HashRouter>
     </TaskProvider>
   );
 }
