@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Profile Card</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#f2f4f8;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.container{
+    width:400px;
+    text-align:center;
+}
+
+h1{
+    margin-bottom:20px;
+    color:#333;
+}
+
+.form{
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 0 10px rgba(0,0,0,.2);
+}
+
+.form input{
+    width:100%;
+    padding:12px;
+    margin:10px 0;
+    border:1px solid #ccc;
+    border-radius:5px;
+    font-size:16px;
+}
+
+button{
+    width:100%;
+    padding:12px;
+    margin-top:10px;
+    background:#007BFF;
+    color:white;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+    font-size:16px;
+}
+
+button:hover{
+    background:#0056b3;
+}
+
+.card{
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 0 10px rgba(0,0,0,.2);
+    display:none;
+}
+
+.card img{
+    width:100px;
+    margin-bottom:15px;
+}
+
+.card h2{
+    margin-bottom:10px;
+}
+
+.card p{
+    margin:8px 0;
+    font-size:18px;
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Student Profile Card</h1>
+
+    <div class="form" id="formSection">
+
+        <input type="text" id="name" placeholder="Enter Student Name">
+
+        <input type="text" id="roll" placeholder="Enter Roll Number">
+
+        <input type="number" id="marks" placeholder="Enter Marks">
+
+        <button onclick="displayProfile()">Display Profile</button>
+
+    </div>
+
+    <div class="card" id="profileCard">
+
+        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Student">
+
+        <h2 id="studentName"></h2>
+
+        <p><strong>Roll No :</strong> <span id="studentRoll"></span></p>
+
+        <p><strong>Marks :</strong> <span id="studentMarks"></span></p>
+
+        <p><strong>Grade :</strong> <span id="studentGrade"></span></p>
+
+        <button onclick="goBack()">Back</button>
+
+    </div>
+
+</div>
+
+<script>
+
+function displayProfile(){
+
+    let name=document.getElementById("name").value;
+    let roll=document.getElementById("roll").value;
+    let marks=Number(document.getElementById("marks").value);
+
+    if(name=="" || roll=="" || document.getElementById("marks").value==""){
+        alert("Please fill all the fields.");
+        return;
+    }
+
+    if(marks<0 || marks>100){
+        alert("Enter marks between 0 and 100.");
+        return;
+    }
+
+    let grade;
+
+    if(marks>=90){
+        grade="A+";
+    }
+    else if(marks>=80){
+        grade="A";
+    }
+    else if(marks>=70){
+        grade="B";
+    }
+    else if(marks>=60){
+        grade="C";
+    }
+    else if(marks>=50){
+        grade="D";
+    }
+    else{
+        grade="F";
+    }
+
+    document.getElementById("studentName").innerHTML=name;
+    document.getElementById("studentRoll").innerHTML=roll;
+    document.getElementById("studentMarks").innerHTML=marks;
+    document.getElementById("studentGrade").innerHTML=grade;
+
+    document.getElementById("formSection").style.display="none";
+
+    document.getElementById("profileCard").style.display="block";
+}
+
+function goBack(){
+
+    document.getElementById("profileCard").style.display="none";
+    document.getElementById("formSection").style.display="block";
+
+}
+
+</script>
+
+</body>
+</html>
