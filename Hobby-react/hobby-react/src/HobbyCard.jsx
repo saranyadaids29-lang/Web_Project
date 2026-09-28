@@ -1,4 +1,3 @@
-import React from "react";
 import "./Hobby.css";
 
 function HobbyCard({ image, name, description }) {

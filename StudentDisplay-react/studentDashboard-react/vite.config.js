@@ -2,6 +2,6 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
 export default defineConfig({
-  base: '/projects/student-dashboard/',
+  base: '/Web_Project/projects/student-dashboard/',
   plugins: [react()],
 })

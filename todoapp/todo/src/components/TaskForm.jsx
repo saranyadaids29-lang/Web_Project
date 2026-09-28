@@ -1,5 +1,16 @@
-import { useContext, useEffect, useState } from "react";
-import { TaskContext } from "../context/TaskContext";
+import { useContext, useState } from "react";
+import { TaskContext } from "../context/TaskContextValue";
+
+const getToday = () => new Date().toISOString().split("T")[0];
+
+const getInitialFormData = (editTask, selectedDate) => ({
+  title: editTask?.title ?? "",
+  description: editTask?.description ?? "",
+  date: editTask?.date ?? (selectedDate || getToday()),
+  time: editTask?.time ?? "",
+  priority: editTask?.priority ?? "Medium",
+  category: editTask?.category ?? "Personal",
+});
 
 function TaskForm({
   editTask = null,
@@ -8,40 +19,18 @@ function TaskForm({
 }) {
   const { addTask, updateTask } = useContext(TaskContext);
 
-  const getToday = () => {
-    return new Date().toISOString().split("T")[0];
-  };
+  const [formData, setFormData] = useState(() =>
+    getInitialFormData(editTask, selectedDate)
+  );
+  const [previousProps, setPreviousProps] = useState({ editTask, selectedDate });
 
-  const [formData, setFormData] = useState({
-    title: "",
-    description: "",
-    date: selectedDate || getToday(),
-    time: "",
-    priority: "Medium",
-    category: "Personal",
-  });
-
-  useEffect(() => {
-    if (editTask) {
-      setFormData({
-        title: editTask.title,
-        description: editTask.description,
-        date: editTask.date,
-        time: editTask.time,
-        priority: editTask.priority,
-        category: editTask.category,
-      });
-    } else {
-      setFormData({
-        title: "",
-        description: "",
-        date: selectedDate || getToday(),
-        time: "",
-        priority: "Medium",
-        category: "Personal",
-      });
-    }
-  }, [editTask, selectedDate]);
+  if (
+    previousProps.editTask !== editTask ||
+    previousProps.selectedDate !== selectedDate
+  ) {
+    setPreviousProps({ editTask, selectedDate });
+    setFormData(getInitialFormData(editTask, selectedDate));
+  }
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -71,14 +60,7 @@ function TaskForm({
     } else {
       addTask(formData);
 
-      setFormData({
-        title: "",
-        description: "",
-        date: selectedDate || getToday(),
-        time: "",
-        priority: "Medium",
-        category: "Personal",
-      });
+      setFormData(getInitialFormData(null, selectedDate));
     }
   };
 
