@@ -48,7 +48,7 @@ function About() {
               View My Work
             </Link>
 
-            <a href="/projects/portfolio/Saranya resume.pdf"
+            <a href={`${import.meta.env.BASE_URL}Saranya resume.pdf`}
               download
               className="btn btn-secondary"
             >
@@ -68,7 +68,7 @@ function About() {
           <div className="hero-avatar-wrapper">
 
             <img
-  src="/projects/portfolio/profile.png"
+              src={`${import.meta.env.BASE_URL}profile.png`}
   alt="Saranya D Hero Avatar"
   className="hero-avatar-img"
 />          </div>
