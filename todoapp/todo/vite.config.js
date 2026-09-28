@@ -4,7 +4,7 @@ import { defineConfig } from 'vite'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/TO_DO_APP/',
+  base: '/projects/todo/',
   plugins: [
     react(),
     babel({ presets: [reactCompilerPreset()] })

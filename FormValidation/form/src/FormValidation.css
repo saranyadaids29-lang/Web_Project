@@ -1,141 +1,256 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+:root {
+  --ink: #202238;
+  --muted: #777b91;
+  --line: #dfe2ed;
+  --surface: #ffffff;
+  --canvas: #f3f5fa;
+  --accent: #4d54d9;
+  --accent-dark: #363cae;
+  --coral: #ef765f;
+  --danger: #d34e5c;
+  --success: #218b68;
+}
+
 * {
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f5f7fb;
+  background: var(--canvas);
+  color: var(--ink);
+  font-family: 'DM Sans', 'Segoe UI', sans-serif;
 }
 
 .page {
   min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 30px;
+  padding: 56px 24px;
+  background:
+    radial-gradient(circle at 8% 8%, rgba(77, 84, 217, 0.12), transparent 28%),
+    radial-gradient(circle at 92% 90%, rgba(239, 118, 95, 0.12), transparent 28%),
+    var(--canvas);
 }
 
 .registration-form {
-  width: 430px;
-  background: white;
-  padding: 35px;
-  border-radius: 14px;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  width: min(850px, 100%);
+  margin: 0 auto;
+  padding: 46px 52px 40px;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 24px 70px rgba(39, 43, 88, 0.14);
+  text-align: left;
 }
 
 h1 {
-  text-align: center;
   margin: 0;
-  font-size: 28px;
-  color: #222;
+  color: var(--ink);
+  font-family: 'Space Grotesk', 'Segoe UI', sans-serif;
+  font-size: clamp(30px, 4vw, 42px);
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 1.1;
+  text-align: center;
 }
 
 .subtitle {
+  max-width: 440px;
+  margin: 12px auto 36px;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.5;
   text-align: center;
-  color: #777;
-  margin-bottom: 30px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 20px;
 }
 
 .input-group {
-  margin-bottom: 20px;
+  min-width: 0;
+  margin-bottom: 22px;
 }
 
 .input-group label {
   display: block;
-  margin-bottom: 7px;
+  margin-bottom: 8px;
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.input-group input,
+.input-group textarea {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  outline: none;
+  background: #fbfcff;
+  color: var(--ink);
+  font: inherit;
   font-size: 15px;
-  font-weight: 600;
-  color: #333;
+  transition: border-color 160ms ease, box-shadow 160ms ease, background 160ms ease;
 }
 
 .input-group input {
-  width: 100%;
+  min-height: 48px;
+  padding: 0 14px;
+}
+
+.input-group textarea {
+  min-height: 104px;
   padding: 13px 14px;
-  border: 1.5px solid #d5d5d5;
-  border-radius: 8px;
-  font-size: 15px;
-  outline: none;
-  transition: 0.2s;
+  resize: vertical;
 }
 
-.input-group input:focus {
-  border-color: #555;
+.input-group input::placeholder,
+.input-group textarea::placeholder {
+  color: #a4a8b8;
 }
 
-.input-group input.invalid {
-  border-color: #e53935;
+.input-group input:focus,
+.input-group textarea:focus {
+  border-color: var(--accent);
+  background: var(--surface);
+  box-shadow: 0 0 0 4px rgba(77, 84, 217, 0.12);
 }
 
-.input-group input.valid {
-  border-color: #2e9d50;
+.input-group input.valid,
+.input-group textarea.valid {
+  border-color: var(--success);
+}
+
+.input-group input.invalid,
+.input-group textarea.invalid {
+  border-color: var(--danger);
+}
+
+.input-group input[type='file'] {
+  min-height: 48px;
+  padding: 11px 12px;
+  cursor: pointer;
+}
+
+.input-group input[type='file']::file-selector-button {
+  margin-right: 10px;
+  padding: 7px 11px;
+  border: 0;
+  border-radius: 7px;
+  background: #e7e8ff;
+  color: var(--accent-dark);
+  cursor: pointer;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
 }
 
 .error {
   display: block;
-  margin-top: 6px;
-  font-size: 13px;
-  color: #e53935;
+  margin-top: 7px;
+  color: var(--danger);
+  font-size: 12px;
+  line-height: 1.35;
 }
 
-/* PASSWORD RULES */
-
-.password-rules {
-  background: #f8f9fb;
-  border: 1px solid #e5e5e5;
-  border-radius: 8px;
-  padding: 14px;
-  margin-top: -5px;
-  margin-bottom: 20px;
-}
-
-.password-rules p {
-  margin: 0 0 10px;
-  font-weight: 600;
-  color: #333;
-}
-
-.rule {
+.checkbox-label {
   display: flex;
-  align-items: center;
-  gap: 8px;
-  margin: 7px 0;
+  align-items: flex-start;
+  gap: 10px;
+  margin: -2px 0 22px;
+  color: var(--muted);
+  cursor: pointer;
   font-size: 13px;
-  color: #777;
+  line-height: 1.45;
 }
 
-.rule span {
-  font-size: 15px;
+.checkbox-label input {
+  width: 17px;
+  height: 17px;
+  flex: 0 0 auto;
+  margin: 0;
+  accent-color: var(--accent);
+  cursor: pointer;
 }
 
-.rule.success {
-  color: #2e9d50;
+.file-name {
+  display: block;
+  overflow: hidden;
+  margin-top: 7px;
+  color: var(--muted);
+  font-size: 12px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-.rule.success span {
-  font-weight: bold;
+.actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-top: 8px;
 }
-
-/* BUTTON */
 
 button {
+  min-height: 50px;
   width: 100%;
-  padding: 13px;
-  border: none;
-  border-radius: 8px;
-  background: #222;
+  border: 0;
+  border-radius: 10px;
+  background: var(--accent);
   color: white;
-  font-size: 16px;
-  font-weight: 600;
   cursor: pointer;
-  transition: 0.2s;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  transition: transform 160ms ease, background 160ms ease, box-shadow 160ms ease;
 }
 
 button:hover:not(:disabled) {
-  background: #000;
+  background: var(--accent-dark);
+  box-shadow: 0 9px 20px rgba(77, 84, 217, 0.22);
+  transform: translateY(-1px);
+}
+
+button:focus-visible {
+  outline: 3px solid rgba(239, 118, 95, 0.45);
+  outline-offset: 3px;
 }
 
 button:disabled {
-  background: #ccc;
+  background: #c8cbd8;
   cursor: not-allowed;
+}
+
+.clear-button {
+  border: 1px solid #f0c7bf;
+  background: #fff8f6;
+  color: #bc5d4b;
+}
+
+.clear-button:hover:not(:disabled) {
+  background: #fff0ec;
+  box-shadow: 0 9px 20px rgba(239, 118, 95, 0.15);
+}
+
+@media (max-width: 680px) {
+  .page {
+    padding: 24px 14px;
+  }
+
+  .registration-form {
+    padding: 32px 20px 24px;
+    border-radius: 18px;
+  }
+
+  .subtitle {
+    margin-bottom: 28px;
+  }
+
+  .form-grid,
+  .actions {
+    grid-template-columns: 1fr;
+  }
 }
